@@ -1,0 +1,11 @@
+#!/bin/bash
+
+useradd $1
+usermod -G wheel $1
+cd /home/$1/
+mkdir .ssh
+touch .ssh/authorized_keys
+echo "$2" >> .ssh/authorized_keys
+chmod 700 /home/$1/.ssh
+chmod 600 /home/$1/.ssh/*
+chown -R $1:$1 /home/$1/
